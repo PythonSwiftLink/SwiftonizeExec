@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,7 @@
 		6818E6462AB85D3400E95718 /* SwiftSyntaxBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E6452AB85D3400E95718 /* SwiftSyntaxBuilder */; };
 		6818E6482AB85D3400E95718 /* SwiftSyntaxParser in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E6472AB85D3400E95718 /* SwiftSyntaxParser */; };
 		6818E64A2AB85D3400E95718 /* _SwiftSyntaxMacros in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E6492AB85D3400E95718 /* _SwiftSyntaxMacros */; };
+		68FE216D2AB8EFDC00F250CC /* Swiftonize in Frameworks */ = {isa = PBXBuildFile; productRef = 68FE216C2AB8EFDC00F250CC /* Swiftonize */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +58,7 @@
 				6818E63C2AB85D3400E95718 /* SwiftOperators in Frameworks */,
 				6818E64A2AB85D3400E95718 /* _SwiftSyntaxMacros in Frameworks */,
 				6818E6182AB8549700E95718 /* PathKit in Frameworks */,
+				68FE216D2AB8EFDC00F250CC /* Swiftonize in Frameworks */,
 				6818E6132AB8542800E95718 /* ArgumentParser in Frameworks */,
 				6818E6482AB85D3400E95718 /* SwiftSyntaxParser in Frameworks */,
 				6818E6072AB8528000E95718 /* Swiftonize in Frameworks */,
@@ -135,6 +137,7 @@
 				6818E6452AB85D3400E95718 /* SwiftSyntaxBuilder */,
 				6818E6472AB85D3400E95718 /* SwiftSyntaxParser */,
 				6818E6492AB85D3400E95718 /* _SwiftSyntaxMacros */,
+				68FE216C2AB8EFDC00F250CC /* Swiftonize */,
 			);
 			productName = SwiftonizeExec;
 			productReference = 6818E5FB2AB8512900E95718 /* SwiftonizeExec */;
@@ -165,10 +168,10 @@
 			);
 			mainGroup = 6818E5F22AB8512900E95718;
 			packageReferences = (
-				6818E6052AB8528000E95718 /* XCLocalSwiftPackageReference "../Swiftonize" */,
 				6818E60E2AB8540800E95718 /* XCRemoteSwiftPackageReference "PathKit" */,
 				6818E6112AB8542800E95718 /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
 				6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */,
+				68FE216B2AB8EFDC00F250CC /* XCRemoteSwiftPackageReference "Swiftonize" */,
 			);
 			productRefGroup = 6818E5FC2AB8512900E95718 /* Products */;
 			projectDirPath = "";
@@ -355,13 +358,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		6818E6052AB8528000E95718 /* XCLocalSwiftPackageReference "../Swiftonize" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../Swiftonize;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
 		6818E60E2AB8540800E95718 /* XCRemoteSwiftPackageReference "PathKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -385,6 +381,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 508.0.0;
+			};
+		};
+		68FE216B2AB8EFDC00F250CC /* XCRemoteSwiftPackageReference "Swiftonize" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/PythonSwiftLink/Swiftonize";
+			requirement = {
+				branch = testing;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -453,6 +457,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */;
 			productName = _SwiftSyntaxMacros;
+		};
+		68FE216C2AB8EFDC00F250CC /* Swiftonize */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68FE216B2AB8EFDC00F250CC /* XCRemoteSwiftPackageReference "Swiftonize" */;
+			productName = Swiftonize;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,0 +1,460 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6818E5FF2AB8512900E95718 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6818E5FE2AB8512900E95718 /* App.swift */; };
+		6818E6072AB8528000E95718 /* Swiftonize in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E6062AB8528000E95718 /* Swiftonize */; };
+		6818E6092AB8536800E95718 /* Build.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6818E6082AB8536800E95718 /* Build.swift */; };
+		6818E60B2AB8539B00E95718 /* PythonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6818E60A2AB8539B00E95718 /* PythonHandler.swift */; };
+		6818E60D2AB853A500E95718 /* SourceFilesFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6818E60C2AB853A500E95718 /* SourceFilesFilter.swift */; };
+		6818E6132AB8542800E95718 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E6122AB8542800E95718 /* ArgumentParser */; };
+		6818E6182AB8549700E95718 /* PathKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E6172AB8549700E95718 /* PathKit */; };
+		6818E6382AB85D3400E95718 /* IDEUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E6372AB85D3400E95718 /* IDEUtils */; };
+		6818E63A2AB85D3400E95718 /* SwiftDiagnostics in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E6392AB85D3400E95718 /* SwiftDiagnostics */; };
+		6818E63C2AB85D3400E95718 /* SwiftOperators in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E63B2AB85D3400E95718 /* SwiftOperators */; };
+		6818E63E2AB85D3400E95718 /* SwiftParser in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E63D2AB85D3400E95718 /* SwiftParser */; };
+		6818E6402AB85D3400E95718 /* SwiftParserDiagnostics in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E63F2AB85D3400E95718 /* SwiftParserDiagnostics */; };
+		6818E6422AB85D3400E95718 /* SwiftRefactor in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E6412AB85D3400E95718 /* SwiftRefactor */; };
+		6818E6442AB85D3400E95718 /* SwiftSyntax in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E6432AB85D3400E95718 /* SwiftSyntax */; };
+		6818E6462AB85D3400E95718 /* SwiftSyntaxBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E6452AB85D3400E95718 /* SwiftSyntaxBuilder */; };
+		6818E6482AB85D3400E95718 /* SwiftSyntaxParser in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E6472AB85D3400E95718 /* SwiftSyntaxParser */; };
+		6818E64A2AB85D3400E95718 /* _SwiftSyntaxMacros in Frameworks */ = {isa = PBXBuildFile; productRef = 6818E6492AB85D3400E95718 /* _SwiftSyntaxMacros */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6818E5F92AB8512900E95718 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6818E5FB2AB8512900E95718 /* SwiftonizeExec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftonizeExec; sourceTree = BUILT_PRODUCTS_DIR; };
+		6818E5FE2AB8512900E95718 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		6818E6082AB8536800E95718 /* Build.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Build.swift; sourceTree = "<group>"; };
+		6818E60A2AB8539B00E95718 /* PythonHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PythonHandler.swift; sourceTree = "<group>"; };
+		6818E60C2AB853A500E95718 /* SourceFilesFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceFilesFilter.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6818E5F82AB8512900E95718 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6818E6462AB85D3400E95718 /* SwiftSyntaxBuilder in Frameworks */,
+				6818E6402AB85D3400E95718 /* SwiftParserDiagnostics in Frameworks */,
+				6818E63E2AB85D3400E95718 /* SwiftParser in Frameworks */,
+				6818E63C2AB85D3400E95718 /* SwiftOperators in Frameworks */,
+				6818E64A2AB85D3400E95718 /* _SwiftSyntaxMacros in Frameworks */,
+				6818E6182AB8549700E95718 /* PathKit in Frameworks */,
+				6818E6132AB8542800E95718 /* ArgumentParser in Frameworks */,
+				6818E6482AB85D3400E95718 /* SwiftSyntaxParser in Frameworks */,
+				6818E6072AB8528000E95718 /* Swiftonize in Frameworks */,
+				6818E63A2AB85D3400E95718 /* SwiftDiagnostics in Frameworks */,
+				6818E6442AB85D3400E95718 /* SwiftSyntax in Frameworks */,
+				6818E6422AB85D3400E95718 /* SwiftRefactor in Frameworks */,
+				6818E6382AB85D3400E95718 /* IDEUtils in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6818E5F22AB8512900E95718 = {
+			isa = PBXGroup;
+			children = (
+				6818E5FD2AB8512900E95718 /* SwiftonizeExec */,
+				6818E5FC2AB8512900E95718 /* Products */,
+				6818E6162AB8549700E95718 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6818E5FC2AB8512900E95718 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6818E5FB2AB8512900E95718 /* SwiftonizeExec */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6818E5FD2AB8512900E95718 /* SwiftonizeExec */ = {
+			isa = PBXGroup;
+			children = (
+				6818E5FE2AB8512900E95718 /* App.swift */,
+				6818E6082AB8536800E95718 /* Build.swift */,
+				6818E60A2AB8539B00E95718 /* PythonHandler.swift */,
+				6818E60C2AB853A500E95718 /* SourceFilesFilter.swift */,
+			);
+			path = SwiftonizeExec;
+			sourceTree = "<group>";
+		};
+		6818E6162AB8549700E95718 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6818E5FA2AB8512900E95718 /* SwiftonizeExec */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6818E6022AB8512900E95718 /* Build configuration list for PBXNativeTarget "SwiftonizeExec" */;
+			buildPhases = (
+				6818E5F72AB8512900E95718 /* Sources */,
+				6818E5F82AB8512900E95718 /* Frameworks */,
+				6818E5F92AB8512900E95718 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftonizeExec;
+			packageProductDependencies = (
+				6818E6062AB8528000E95718 /* Swiftonize */,
+				6818E6122AB8542800E95718 /* ArgumentParser */,
+				6818E6172AB8549700E95718 /* PathKit */,
+				6818E6372AB85D3400E95718 /* IDEUtils */,
+				6818E6392AB85D3400E95718 /* SwiftDiagnostics */,
+				6818E63B2AB85D3400E95718 /* SwiftOperators */,
+				6818E63D2AB85D3400E95718 /* SwiftParser */,
+				6818E63F2AB85D3400E95718 /* SwiftParserDiagnostics */,
+				6818E6412AB85D3400E95718 /* SwiftRefactor */,
+				6818E6432AB85D3400E95718 /* SwiftSyntax */,
+				6818E6452AB85D3400E95718 /* SwiftSyntaxBuilder */,
+				6818E6472AB85D3400E95718 /* SwiftSyntaxParser */,
+				6818E6492AB85D3400E95718 /* _SwiftSyntaxMacros */,
+			);
+			productName = SwiftonizeExec;
+			productReference = 6818E5FB2AB8512900E95718 /* SwiftonizeExec */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6818E5F32AB8512900E95718 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					6818E5FA2AB8512900E95718 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 6818E5F62AB8512900E95718 /* Build configuration list for PBXProject "SwiftonizeExec" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6818E5F22AB8512900E95718;
+			packageReferences = (
+				6818E6052AB8528000E95718 /* XCLocalSwiftPackageReference "../Swiftonize" */,
+				6818E60E2AB8540800E95718 /* XCRemoteSwiftPackageReference "PathKit" */,
+				6818E6112AB8542800E95718 /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+				6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */,
+			);
+			productRefGroup = 6818E5FC2AB8512900E95718 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6818E5FA2AB8512900E95718 /* SwiftonizeExec */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6818E5F72AB8512900E95718 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6818E60D2AB853A500E95718 /* SourceFilesFilter.swift in Sources */,
+				6818E60B2AB8539B00E95718 /* PythonHandler.swift in Sources */,
+				6818E6092AB8536800E95718 /* Build.swift in Sources */,
+				6818E5FF2AB8512900E95718 /* App.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6818E6002AB8512900E95718 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6818E6012AB8512900E95718 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		6818E6032AB8512900E95718 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		6818E6042AB8512900E95718 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6818E5F62AB8512900E95718 /* Build configuration list for PBXProject "SwiftonizeExec" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6818E6002AB8512900E95718 /* Debug */,
+				6818E6012AB8512900E95718 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6818E6022AB8512900E95718 /* Build configuration list for PBXNativeTarget "SwiftonizeExec" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6818E6032AB8512900E95718 /* Debug */,
+				6818E6042AB8512900E95718 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		6818E6052AB8528000E95718 /* XCLocalSwiftPackageReference "../Swiftonize" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Swiftonize;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6818E60E2AB8540800E95718 /* XCRemoteSwiftPackageReference "PathKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kylef/PathKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+		6818E6112AB8542800E95718 /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.3;
+			};
+		};
+		6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-syntax";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 508.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6818E6062AB8528000E95718 /* Swiftonize */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Swiftonize;
+		};
+		6818E6122AB8542800E95718 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6818E6112AB8542800E95718 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+		6818E6172AB8549700E95718 /* PathKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6818E60E2AB8540800E95718 /* XCRemoteSwiftPackageReference "PathKit" */;
+			productName = PathKit;
+		};
+		6818E6372AB85D3400E95718 /* IDEUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = IDEUtils;
+		};
+		6818E6392AB85D3400E95718 /* SwiftDiagnostics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftDiagnostics;
+		};
+		6818E63B2AB85D3400E95718 /* SwiftOperators */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftOperators;
+		};
+		6818E63D2AB85D3400E95718 /* SwiftParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftParser;
+		};
+		6818E63F2AB85D3400E95718 /* SwiftParserDiagnostics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftParserDiagnostics;
+		};
+		6818E6412AB85D3400E95718 /* SwiftRefactor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftRefactor;
+		};
+		6818E6432AB85D3400E95718 /* SwiftSyntax */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftSyntax;
+		};
+		6818E6452AB85D3400E95718 /* SwiftSyntaxBuilder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftSyntaxBuilder;
+		};
+		6818E6472AB85D3400E95718 /* SwiftSyntaxParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = SwiftSyntaxParser;
+		};
+		6818E6492AB85D3400E95718 /* _SwiftSyntaxMacros */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6818E6362AB85D3400E95718 /* XCRemoteSwiftPackageReference "swift-syntax" */;
+			productName = _SwiftSyntaxMacros;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 6818E5F32AB8512900E95718 /* Project object */;
+}

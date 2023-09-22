@@ -13,5 +13,5 @@ jobs:
       - uses: dawidd6/action-homebrew-bump-formula@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tap: pythonswiftlink/homebrew-swiftonizeexec
+          tap: PythonSwiftLink/homebrew-SwiftonizeExec
           formula: swiftonizeexec

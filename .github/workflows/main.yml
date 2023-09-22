@@ -2,7 +2,7 @@ name: Bump Homebrew formula
 
 on:
   push:
-    tags: '*'
+    branches: [ main ]
 
 jobs:
   homebrew:

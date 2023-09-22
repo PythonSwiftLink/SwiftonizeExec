@@ -15,6 +15,7 @@ jobs:
           token: ${{ secrets.HOMEBREW_TOKEN }}
           tap: PythonSwiftLink/homebrew-SwiftonizeExec
           formula: swiftonizeexec
-          tag: ${{github.ref}}
+          #tag: ${{github.ref}}
           # Optional, will be determined automatically
+          url: https://github.com/PythonSwiftLink/SwiftonizeExec/archive/refs/tags/${{github.ref}}.zip
           revision: ${{github.sha}}

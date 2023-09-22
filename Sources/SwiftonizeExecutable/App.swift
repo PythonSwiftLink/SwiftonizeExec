@@ -12,7 +12,7 @@ struct App: AsyncParsableCommand {
 	static var configuration = CommandConfiguration(
 		commandName: "swiftonize",
 		abstract: "Generate static references for autocompleted resources like images, fonts and localized strings in Swift projects",
-		version: "0.0.0",
+		version: "0.0",
 		subcommands: [Generate.self]
 	)
 }
@@ -22,8 +22,10 @@ extension App {
 		static var configuration = CommandConfiguration(abstract: "Generates swiftonized file")
 		@Argument(transform: { p -> PathKit.Path in .init(p) }) var source
 		@Argument(transform: { p -> PathKit.Path in .init(p) }) var destination
-		@Argument(transform: { p -> PathKit.Path in .init(p) }) var stdlib
-		@Argument(transform: { p -> PathKit.Path in .init(p) }) var extra
+		//@Argument(transform: { p -> PathKit.Path in .init(p) }) var stdlib
+		//@Argument(transform: { p -> PathKit.Path in .init(p) }) var extra
+		@Argument var stdlib: String?
+		@Argument var extra: String?
 		@Option(transform: { p -> PathKit.Path? in .init(p) }) var site
 		
 		func run() async throws {
@@ -31,7 +33,7 @@ extension App {
 			
 			let python = PythonHandler.shared
 			if !python.defaultRunning {
-				python.start(stdlib: stdlib.string, app_packages: [extra.string], debug: true)
+				python.start(stdlib: stdlib ?? "./python_stdlib", app_packages: [extra ?? "./python-extra"], debug: true)
 			}
 			
 			let processInfo = ProcessInfo()

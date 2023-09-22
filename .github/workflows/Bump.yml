@@ -7,7 +7,7 @@ on:
 jobs:
   homebrew:
     name: Bump Homebrew formula
-    runs-on: unbuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: dawidd6/action-homebrew-bump-formula@v3
         with:

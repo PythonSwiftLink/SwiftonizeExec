@@ -18,5 +18,5 @@ jobs:
           #tag: ${{github.ref}}
           # Optional, will be determined automatically
           #url: https://github.com/PythonSwiftLink/SwiftonizeExec/archive/refs/tags/${{github.ref}}.zip
-          #revision: ${{github.sha}}
+          revision: ${{github.sha}}
           livecheck: true

@@ -17,8 +17,9 @@ jobs:
           tap: PythonSwiftLink/homebrew-SwiftonizeExec
           formula: swiftonizeexec
           tag: ${{github.ref}}
+          version: 10
           # Optional, will be determined automatically
           #url: https://github.com/PythonSwiftLink/SwiftonizeExec/archive/refs/tags/${{github.ref}}.zip
           revision: ${{github.sha}}
-          force: false
+          force: true
           livecheck: true

@@ -10,16 +10,21 @@ jobs:
     name: Bump Homebrew formula
     runs-on: macos-latest
     steps:
-      - run: brew update
-      - uses: dawidd6/action-homebrew-bump-formula@v3
+      - name: Extract version
+        id: extract-version
+        run: |
+          echo "tag-name=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      - uses: mislav/bump-homebrew-formula-action@v3
+        if: ${{ !contains(github.ref, '-') }} # skip prereleases
         with:
-          token: ${{ secrets.HOMEBREW_TOKEN }}
-          tap: PythonSwiftLink/homebrew-SwiftonizeExec
-          formula: swiftonizeexec
-          tag: ${{github.ref}}
-          version: 10
-          # Optional, will be determined automatically
-          #url: https://github.com/PythonSwiftLink/SwiftonizeExec/archive/refs/tags/${{github.ref}}.zip
-          revision: ${{github.sha}}
-          force: true
-          livecheck: true
+          formula-name: swiftonizeexec
+          formula-path: swiftonizeexec.rb
+          homebrew-tap: PythonSwiftLink/homebrew-SwiftonizeExec
+          base-branch: master
+          download-url: https://github.com/PythonSwiftLink/${{ steps.extract-version.outputs.tag-name }}.tar.gz
+          commit-message: |
+            {{formulaName}} {{version}}
+
+            Created by https://github.com/mislav/bump-homebrew-formula-action
+        env:
+          COMMITTER_TOKEN: ${{ secrets.COMMITTER_TOKEN }}

@@ -30,13 +30,28 @@ extension App {
 		
 		func run() async throws {
 			print(source)
+			let processInfo = ProcessInfo()
 			
+			
+			var lib: String = ""
+			var extra: String = ""
+			if let call = processInfo.arguments.first {
+				let callp = PathKit.Path(call)
+				if callp.isSymlink {
+					let real = try callp.symlinkDestination()
+					let root = real.parent()
+					lib = (root + "python_stdlib").string
+					extra = (root + "python-extra").string
+					
+				}
+			}
+		
 			let python = PythonHandler.shared
 			if !python.defaultRunning {
-				python.start(stdlib: stdlib ?? "./python_stdlib", app_packages: [extra ?? "./python-extra"], debug: true)
+				python.start(stdlib: lib, app_packages: [extra ?? "./python-extra"], debug: true)
 			}
 			
-			let processInfo = ProcessInfo()
+			
 			
 //			let productModuleName = processInfo.environment[EnvironmentKeys.productModuleName]
 //			let infoPlistFile = processInfo.environment[EnvironmentKeys.infoPlistFile]

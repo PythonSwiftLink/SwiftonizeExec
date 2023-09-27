@@ -1,0 +1,36 @@
+name: Repository Dispatch
+on:
+  repository_dispatch:
+    types: [formula_update]
+jobs:
+  myEvent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.client_payload.ref }}
+          sha: ${{ github.event.client_payload.sha }}
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' # install the python version needed
+
+      - name: install python packages
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install cookiecutter
+        
+      - name: generate cookie
+        run: python3.10 generate_formula.py ${{ github.event.client_payload.ref }} ${{ github.event.client_payload.sha }}
+
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.Homebrew }}
+        with:
+          source-directory: 'homebrew_formula'
+          destination-github-username: 'pythonswiftlink'
+          destination-repository-name: 'tools'
+          user-email: pythonswiftlink@gmail.com
+          target-branch: master

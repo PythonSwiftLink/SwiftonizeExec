@@ -10,3 +10,5 @@
 .build/
 release/
 homebrew_formula/
+.build/
+release/

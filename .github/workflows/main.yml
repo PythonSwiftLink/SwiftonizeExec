@@ -18,3 +18,7 @@ jobs:
           cp -rf python_stdlib release/python_stdlib
           cp -rf python-extra release/python-extra
           tar -C ./release/ -czvf ./swiftonize.tar.gz ./
+
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "swiftonize.tar.gz"

@@ -10,21 +10,18 @@ jobs:
     name: Bump Homebrew formula
     runs-on: macos-latest
     steps:
-      - name: Extract version
-        id: extract-version
-        run: |
-          echo "tag-name=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-      - uses: mislav/bump-homebrew-formula-action@v3
-        if: ${{ !contains(github.ref, '-') }} # skip prereleases
-        with:
-          formula-name: swiftonizeexec
-          formula-path: swiftonizeexec.rb
-          homebrew-tap: PythonSwiftLink/homebrew-SwiftonizeExec
-          base-branch: master
-          download-url: https://github.com/PythonSwiftLink/${{ steps.extract-version.outputs.tag-name }}.tar.gz
-          commit-message: |
-            {{formulaName}} {{version}}
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content
 
-            Created by https://github.com/mislav/bump-homebrew-formula-action
-        env:
-          COMMITTER_TOKEN: ${{ secrets.HOMEBREW_TOKEN }}
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' # install the python version needed
+
+      - name: install python packages
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install cookiecutter
+
+      - name: execute py script # run main.py
+        run: python main.py

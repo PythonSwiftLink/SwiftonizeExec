@@ -1,27 +1,22 @@
-name: Bump Homebrew formula
-
+name: Repository Dispatch
 on:
-  push:
-    tags: '*'
-  workflow_dispatch:
-  
+  repository_dispatch:
+    types: [homebrew_formula]
 jobs:
-  homebrew:
-    name: Bump Homebrew formula
-    runs-on: macos-latest
+  myEvent:
+    runs-on: ubuntu-latest
     steps:
-      - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content
-
-      - name: setup python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v3
         with:
-          python-version: '3.10' # install the python version needed
+          ref: ${{ github.event.client_payload.ref }}
 
-      - name: install python packages
-        run: |
-          python3 -m pip install --upgrade pip
-          pip3 install cookiecutter
-
-      - name: execute py script # run main.py
-        run: python main.py
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.Homebrew }}
+        with:
+          source-directory: 'homebrew_formula'
+          destination-github-username: 'pythonswiftlink'
+          destination-repository-name: 'wiki'
+          user-email: pythonswiftlink@gmail.com
+          target-branch: master

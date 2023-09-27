@@ -1,27 +1,70 @@
-name: Bump Homebrew formula
-
+name: Homebrew Builder
 on:
   push:
-    tags: '*'
+   tags:
+     - '*'
   workflow_dispatch:
-  
+
 jobs:
-  homebrew:
-    name: Bump Homebrew formula
+  release-osx:
     runs-on: macos-latest
+    permissions:
+      contents: write
     steps:
-      - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content
+    - uses: actions/checkout@v4
+    - name: Build Release
+      run: |
+          swift build -c release --disable-sandbox --arch arm64 --arch x86_64
+          mkdir release
+          cp -rf .build/apple/Products/Release/SwiftonizeExecutable release/Swiftonize
+          cp -rf python_stdlib release/python_stdlib
+          cp -rf python-extra release/python-extra
+          tar -C ./release/ -czvf ./swiftonize.tar.gz ./
+          
+    - name: Get version
+      id: get_version
+      run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
+    
+    - name: Set SHA
+      id: shasum
+      run: |
+        echo ::set-output name=sha::"$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')"
+    
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "swiftonize.tar.gz"
+        token: ${{ secrets.Homebrew }}
+        allowUpdates: true
+    
+    - name: setup python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10' # install the python version needed
 
-      - name: setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10' # install the python version needed
-
-      - name: install python packages
-        run: |
+    - name: install python packages
+      run: |
           python3 -m pip install --upgrade pip
-          pip3 install cookiecutter
+          pip3 install git+https://github.com/sphinx-doc/sphinx
+          pip3 install sphinx-copybutton
+          pip3 install git+https://github.com/psychowasp/sphinx_rtd_theme
+          pip3 install kivy
+          
+    - name: install sphinx-build
+      run: pip3 install cookiecutter
+        
+    - name: generate cookie
+      run: python3.10 generate_formula.py ${{ steps.get_version.outputs.version }} ${{ steps.shasum.outputs.sha }}
 
-      - name: execute py script # run main.py
-        run: python main.py
+    - name: Pushes to another repository
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.Homebrew }}
+      with:
+        source-directory: 'homebrew_formula'
+        destination-github-username: 'pythonswiftlink'
+        destination-repository-name: 'wiki'
+        user-email: pythonswiftlink@gmail.com
+        target-branch: master
+        
+    
+    

@@ -5,3 +5,8 @@
 *.xcworkspacedata
 *.resolved
 *.xcuserstate
+.swiftpm/xcode/xcuserdata/codebuilder.xcuserdatad/xcschemes/xcschememanagement.plist
+.swiftpm/xcode/xcshareddata/xcschemes/SwiftonizeExecutable.xcscheme
+.build/
+release/
+homebrew_formula/

@@ -1,0 +1,15 @@
+name: Homebrew Builder
+on:
+  push:
+   tags:
+     - '*'
+  workflow_dispatch:
+
+jobs:
+  release-osx:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build Release
+      run: |
+          swift build -c release --disable-sandbox --arch arm64 --arch x86_64

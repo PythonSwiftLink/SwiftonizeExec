@@ -45,4 +45,4 @@ jobs:
         brew bump-formula-pr -f --version=${{ steps.get_version.outputs.version }} --no-browse --no-audit \
         --sha256=${{ steps.shasum.outputs.sha }} \
         --url="https://github.com/pythonswiftlink/SwiftonizeExec/releases/download/${{ steps.get_version.outputs.version }}/swiftonize.tar.gz" \
-        pythonswiftlink/tools/swiftonize
+        pythonswiftlink/tools/swiftonize@${{ steps.get_version.outputs.version }}

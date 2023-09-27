@@ -35,14 +35,36 @@ jobs:
         artifacts: "swiftonize.tar.gz"
         token: ${{ secrets.Homebrew }}
         allowUpdates: true
+    
+    - name: setup python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10' # install the python version needed
 
-
-    - name: Bump Brew
-      env: 
-        HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.BREW_TOKEN }}
+    - name: install python packages
       run: |
-        brew tap pythonswiftlink/tools
-        brew bump-formula-pr -f --version=${{ steps.get_version.outputs.version }} --no-browse --no-audit \
-        --sha256=${{ steps.shasum.outputs.sha }} \
-        --url="https://github.com/pythonswiftlink/SwiftonizeExec/releases/download/${{ steps.get_version.outputs.version }}/swiftonize.tar.gz" \
-        pythonswiftlink/tools/swiftonize@${{ steps.get_version.outputs.version }}
+          python3 -m pip install --upgrade pip
+          pip3 install git+https://github.com/sphinx-doc/sphinx
+          pip3 install sphinx-copybutton
+          pip3 install git+https://github.com/psychowasp/sphinx_rtd_theme
+          pip3 install kivy
+          
+    - name: install sphinx-build
+      run: pip3 install cookiecutter
+        
+    - name: generate cookie
+      run: python3.10 generate_formula.py ${{ steps.get_version.outputs.version }} ${{ steps.shasum.outputs.sha }}
+
+    - name: Pushes to another repository
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.Homebrew }}
+      with:
+        source-directory: 'homebrew_formula'
+        destination-github-username: 'pythonswiftlink'
+        destination-repository-name: 'wiki'
+        user-email: pythonswiftlink@gmail.com
+        target-branch: master
+        
+    
+    

@@ -9,6 +9,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.client_payload.ref }}
+          sha: ${{ github.event.client_payload.sha }}
 
       - name: setup python
         uses: actions/setup-python@v4
@@ -21,8 +22,7 @@ jobs:
           pip3 install cookiecutter
         
       - name: generate cookie
-        run: python3.10 generate_formula.py ${{ steps.get_version.outputs.version }} ${{ 
-
+        run: python3.10 generate_formula.py ${{ github.event.client_payload.ref }} ${{ github.event.client_payload.sha }}
 
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@main
@@ -31,6 +31,6 @@ jobs:
         with:
           source-directory: 'homebrew_formula'
           destination-github-username: 'pythonswiftlink'
-          destination-repository-name: 'wiki'
+          destination-repository-name: 'tools'
           user-email: pythonswiftlink@gmail.com
           target-branch: master

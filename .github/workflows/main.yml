@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_source:
+  buildsource:
     #strategy:
       #matrix:
       #  os: [macos-latest]
@@ -28,12 +28,12 @@ jobs:
     - name: Get version
       id: get_version
       #run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
-      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $env:GITHUB_ENV
+      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
     
     - name: Set SHA
       id: shasum
       #run: echo ::set-output name=sha::"$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')"
-      run: echo "sha=$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')" >> $env:GITHUB_ENV
+      run: echo "sha=$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')" >> $GITHUB_OUTPUT
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "swiftonize.tar.gz"

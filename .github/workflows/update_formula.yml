@@ -1,4 +1,4 @@
-name: Repository Dispatch
+name: formula_update
 on:
   repository_dispatch:
     types: [formula_update]

@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  buildsource:
+  build_source:
     #strategy:
       #matrix:
       #  os: [macos-latest]

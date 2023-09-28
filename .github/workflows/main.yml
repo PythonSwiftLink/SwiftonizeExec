@@ -43,3 +43,4 @@ jobs:
         token: ${{ secrets.Homebrew }}
         event-type: formula_update
         client-payload: '{"ref": "${{ steps.get_version.outputs.version }}", "sha": "${{ steps.shasum.outputs.sha }}"}'
+

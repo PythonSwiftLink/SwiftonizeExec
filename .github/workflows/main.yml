@@ -7,6 +7,10 @@ on:
 
 jobs:
   release-osx:
+    strategy:
+      matrix:
+        os: [macos-latest]
+        swift: ["5.8"]
     runs-on: macos-latest
     permissions:
       contents: write

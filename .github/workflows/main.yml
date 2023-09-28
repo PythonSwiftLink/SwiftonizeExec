@@ -7,10 +7,10 @@ on:
 
 jobs:
   build_source:
-    strategy:
-      matrix:
-        os: [macos-latest]
-        swift: ["5.8"]
+    #strategy:
+      #matrix:
+      #  os: [macos-latest]
+      #  swift: ["5.8"]
     runs-on: macos-latest
     permissions:
       contents: write

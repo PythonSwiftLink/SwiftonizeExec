@@ -12,7 +12,7 @@ struct App: AsyncParsableCommand {
 	static var configuration = CommandConfiguration(
 		commandName: "swiftonize",
 		abstract: "Generate static references for autocompleted resources like images, fonts and localized strings in Swift projects",
-		version: "0.1",
+		version: "0.2",
 		subcommands: [Generate.self]
 	)
 }

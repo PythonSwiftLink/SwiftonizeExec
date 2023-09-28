@@ -16,9 +16,7 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v4  
-    - name: Build Release
-      id: build_source
-    
+    - name: Build Release    
       run: | 
             swift build -c release --disable-sandbox --arch arm64 --arch x86_64
             mkdir release
@@ -29,21 +27,21 @@ jobs:
           
     - name: Get version
       id: get_version
-      run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
+      #run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
+      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $env:GITHUB_ENV
     
     - name: Set SHA
       id: shasum
-      run: |
-        echo ::set-output name=sha::"$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')"
-    
+      #run: echo ::set-output name=sha::"$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')"
+      run: echo "sha=$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')" >> $env:GITHUB_ENV
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "swiftonize.tar.gz"
         token: ${{ secrets.Homebrew }}
         allowUpdates: true
-    outputs:
-      ref: ${{ steps.get_version.outputs.version }}
-      sha: ${{ steps.shasum.outputs.sha }}
+    #outputs:
+    #  ref: ${{ steps.get_version.outputs.version }}
+    #  sha: ${{ steps.shasum.outputs.sha }}
       
   update_formula:
     needs: build_source

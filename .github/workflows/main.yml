@@ -13,7 +13,7 @@ jobs:
       #  swift: ["5.8"]
     runs-on: macos-latest
     outputs:
-      ref: ${{ steps.get_version.outputs.version }}
+      version: ${{ steps.get_version.outputs.version }}
       sha: ${{ steps.shasum.outputs.sha }}  
     permissions:
       contents: write
@@ -39,7 +39,12 @@ jobs:
       #run: echo ::set-output name=sha::"$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')"
       #run: echo "sha=$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')">> $GITHUB_OUTPUT
       run: echo "sha=abc"
-      
+
+    - name: retrieve output
+      run: |
+        echo ${{ needs.build_source.outputs.version }}
+        echo ${{ needs.build_source.output.sha }}
+    
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "swiftonize.tar.gz"

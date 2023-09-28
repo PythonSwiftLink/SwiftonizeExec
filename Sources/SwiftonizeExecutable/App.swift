@@ -24,6 +24,8 @@ extension App {
 		@Argument(transform: { p -> PathKit.Path in .init(p) }) var destination
 		//@Argument(transform: { p -> PathKit.Path in .init(p) }) var stdlib
 		//@Argument(transform: { p -> PathKit.Path in .init(p) }) var extra
+		@Option var stdlib: String?
+		@Option var pyextra: String?
 
 		@Option(transform: { p -> PathKit.Path? in .init(p) }) var site
 		
@@ -34,7 +36,11 @@ extension App {
 			
 			var lib: String = ""
 			var extra: String = ""
-			if let call = processInfo.arguments.first {
+			if let stdlib = stdlib, let pyextra = pyextra {
+				lib = stdlib
+				extra = pyextra
+			}
+			else if let call = processInfo.arguments.first {
 				let callp = PathKit.Path(call)
 				if callp.isSymlink {
 					let real = try callp.symlinkDestination()
@@ -44,43 +50,11 @@ extension App {
 					
 				}
 			}
-			print(lib)
 			let python = PythonHandler.shared
 			if !python.defaultRunning {
 				python.start(stdlib: lib, app_packages: [extra], debug: true)
 			}
 			
-			
-			
-//			let productModuleName = processInfo.environment[EnvironmentKeys.productModuleName]
-//			let infoPlistFile = processInfo.environment[EnvironmentKeys.infoPlistFile]
-//			let codeSignEntitlements = processInfo.environment[EnvironmentKeys.codeSignEntitlements]
-//			
-//			let sourceTreeURLs = SourceTreeURLs(
-//				builtProductsDirURL: URL(fileURLWithPath: processInfo.environment[EnvironmentKeys.builtProductsDir] ?? EnvironmentKeys.builtProductsDir),
-//				developerDirURL: URL(fileURLWithPath: processInfo.environment[EnvironmentKeys.developerDir] ?? EnvironmentKeys.developerDir),
-//				sourceRootURL: URL(fileURLWithPath: processInfo.environment[EnvironmentKeys.sourceRoot] ?? "."),
-//				sdkRootURL: URL(fileURLWithPath: processInfo.environment[EnvironmentKeys.sdkRoot] ?? EnvironmentKeys.sdkRoot),
-//				platformURL: URL(fileURLWithPath: processInfo.environment[EnvironmentKeys.platformDir] ?? EnvironmentKeys.platformDir)
-//			)
-//			print(sourceTreeURLs.sdkRootURL, sourceTreeURLs.sourceRootURL)
-			//            let rswiftIgnoreURL = sourceTreeURLs.sourceRootURL
-			//                            .appendingPathComponent(globals.rswiftignore, isDirectory: false)
-			//
-			//                        let core = RswiftCore(
-			//                            outputURL: outputURL,
-			//                            generators: globals.generators.isEmpty ? ResourceType.allCases : globals.generators,
-			//                            accessLevel: globals.accessLevel,
-			//                            bundleSource: globals.bundleSource,
-			//                            importModules: globals.imports,
-			//                            productModuleName: productModuleName,
-			//                            infoPlistFile: infoPlistFile.map(URL.init(fileURLWithPath:)),
-			//                            codeSignEntitlements: codeSignEntitlements.map(URL.init(fileURLWithPath:)),
-			//                            omitMainLet: globals.omitMainLet,
-			//                            rswiftIgnoreURL: rswiftIgnoreURL,
-			//                            sourceTreeURLs: sourceTreeURLs
-			//                        )
-			//
 			let wrappers = try SourceFilter(root: source)
 			
 			for file in wrappers.sources {
@@ -93,12 +67,6 @@ extension App {
 				case .both(_, let pyi):
 					try await build_wrapper(src: pyi, dst: file.swiftFile(destination), site: site)
 				}
-				
-				//                guard file.isFile, file.extension == "py" else { continue }
-				//                print(file)
-				//                let dst = destination + "\(file.lastComponentWithoutExtension).swift"
-				//                try await build_wrapper(src: file, dst: dst, site: site)
-				
 			}
 			
 		}

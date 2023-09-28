@@ -7,10 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.client_payload.ref }}
-          sha: ${{ github.event.client_payload.sha }}
-
+      
       - name: setup python
         uses: actions/setup-python@v4
         with:
@@ -31,6 +28,6 @@ jobs:
         with:
           source-directory: 'homebrew_formula'
           destination-github-username: 'pythonswiftlink'
-          destination-repository-name: 'tools'
+          destination-repository-name: 'homebrew-tools'
           user-email: pythonswiftlink@gmail.com
           target-branch: master

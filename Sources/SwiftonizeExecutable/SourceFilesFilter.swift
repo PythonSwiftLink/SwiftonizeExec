@@ -34,7 +34,6 @@ class SourceFilter {
         
         let pyis = root.filter({$0.extension == "pyi"})
         var pys = root.filter({$0.extension == "py"})
-        
         sources = []
         for src in pyis {
             let fname = src.lastComponentWithoutExtension
@@ -50,6 +49,7 @@ class SourceFilter {
         for src in pys {
             sources.append(.py(path: src))
         }
+		
     }
     
     

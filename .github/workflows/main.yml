@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release-osx:
+  build_source:
     strategy:
       matrix:
         os: [macos-latest]
@@ -43,12 +43,15 @@ jobs:
     
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v2
-      with:
-        token: ${{ secrets.Homebrew }}
-        event-type: formula_update
-        client-payload: '{"ref": "${{ steps.get_version.outputs.version }}", "sha": "${{ steps.shasum.outputs.sha }}"}'
-
-  Update-Formula:
+      #with:
+      #  token: ${{ secrets.Homebrew }}
+      #  event-type: formula_update
+      #  client-payload: '{"ref": "${{ steps.get_version.outputs.version }}", "sha": "${{ steps.shasum.outputs.sha }}"}'
+    outputs:
+     ref: ${{ steps.get_version.outputs.version }}
+     sha: ${{ steps.shasum.outputs.sha }}
+  update_formula:
+    needs: build_source
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -64,7 +67,7 @@ jobs:
           pip3 install cookiecutter
         
       - name: generate cookie
-        run: python3.10 generate_formula.py ${{ github.event.client_payload.ref }} ${{ github.event.client_payload.sha }}
+        run: python3.10 generate_formula.py ${{ needs.build_source.outputs.version }} ${{ needs.build_source.output.sha }}
 
       - name: clone tools and update
         run: |

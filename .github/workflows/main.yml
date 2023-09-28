@@ -15,8 +15,10 @@ jobs:
     permissions:
       contents: write
     steps:
+    
     - uses: actions/checkout@v4
     - name: Build Release
+      id: build_source
       run: |
           swift build -c release --disable-sandbox --arch arm64 --arch x86_64
           mkdir release

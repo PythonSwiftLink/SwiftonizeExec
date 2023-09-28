@@ -22,8 +22,9 @@ jobs:
       contents: write
       
     steps:
-      
-      - uses: actions/checkout@v4  
+      - uses: actions/checkout@v4
+        with:
+          swift-version: 5.9
       - name: Build Release    
         run: | 
               swift build -c release --disable-sandbox --arch arm64 --arch x86_64

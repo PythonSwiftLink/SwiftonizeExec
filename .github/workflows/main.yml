@@ -7,6 +7,9 @@ on:
 
 jobs:
   build_source:
+    outputs:
+      ref: ${{ steps.get_version.outputs.version }}
+      sha: ${{ steps.shasum.outputs.sha }}
     #strategy:
       #matrix:
       #  os: [macos-latest]
@@ -39,15 +42,19 @@ jobs:
         artifacts: "swiftonize.tar.gz"
         token: ${{ secrets.Homebrew }}
         allowUpdates: true
-    #outputs:
-    #  ref: ${{ steps.get_version.outputs.version }}
-    #  sha: ${{ steps.shasum.outputs.sha }}
+    
       
   update_formula:
     needs: build_source
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: retrieve output
+        run: |
+          echo ${{ needs.build_source.outputs.version }}
+          echo ${{ needs.build_source.output.sha }}
+
       
       - name: setup python
         uses: actions/setup-python@v4

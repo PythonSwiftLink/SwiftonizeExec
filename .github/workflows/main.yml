@@ -15,17 +15,17 @@ jobs:
     permissions:
       contents: write
     steps:
-    
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4  
     - name: Build Release
       id: build_source
-      run: |
-          swift build -c release --disable-sandbox --arch arm64 --arch x86_64
-          mkdir release
-          cp -rf .build/apple/Products/Release/SwiftonizeExecutable release/Swiftonize
-          cp -rf python_stdlib release/python_stdlib
-          cp -rf python-extra release/python-extra
-          tar -C ./release/ -czvf ./swiftonize.tar.gz ./
+    
+      run: | 
+            swift build -c release --disable-sandbox --arch arm64 --arch x86_64
+            mkdir release
+            cp -rf .build/apple/Products/Release/SwiftonizeExecutable release/Swiftonize
+            cp -rf python_stdlib release/python_stdlib
+            cp -rf python-extra release/python-extra
+            tar -C ./release/ -czvf ./swiftonize.tar.gz ./
           
     - name: Get version
       id: get_version
@@ -41,17 +41,10 @@ jobs:
         artifacts: "swiftonize.tar.gz"
         token: ${{ secrets.Homebrew }}
         allowUpdates: true
-    
-    
-    #- name: Repository Dispatch
-      #uses: peter-evans/repository-dispatch@v2
-      #with:
-      #  token: ${{ secrets.Homebrew }}
-      #  event-type: formula_update
-      #  client-payload: '{"ref": "${{ steps.get_version.outputs.version }}", "sha": "${{ steps.shasum.outputs.sha }}"}'
     outputs:
-     ref: ${{ steps.get_version.outputs.version }}
-     sha: ${{ steps.shasum.outputs.sha }}
+      ref: ${{ steps.get_version.outputs.version }}
+      sha: ${{ steps.shasum.outputs.sha }}
+      
   update_formula:
     needs: build_source
     runs-on: ubuntu-latest

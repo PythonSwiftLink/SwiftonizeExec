@@ -7,14 +7,14 @@ on:
 
 jobs:
   build_source:
-    outputs:
-      ref: ${{ steps.get_version.outputs.version }}
-      sha: ${{ steps.shasum.outputs.sha }}
     #strategy:
       #matrix:
       #  os: [macos-latest]
       #  swift: ["5.8"]
     runs-on: macos-latest
+    outputs:
+      ref: ${{ steps.get_version.outputs.version }}
+      sha: ${{ steps.shasum.outputs.sha }}  
     permissions:
       contents: write
     steps:
@@ -31,12 +31,15 @@ jobs:
     - name: Get version
       id: get_version
       #run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
-      run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
-    
+      #run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
+      run: echo "version=0.2" >> $GITHUB_OUTPUT
+      
     - name: Set SHA
       id: shasum
       #run: echo ::set-output name=sha::"$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')"
-      run: echo "sha=$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')" >> $GITHUB_OUTPUT
+      #run: echo "sha=$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')">> $GITHUB_OUTPUT
+      run: echo "sha=abc"
+      
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "swiftonize.tar.gz"

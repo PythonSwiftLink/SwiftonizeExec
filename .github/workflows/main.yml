@@ -41,8 +41,8 @@ jobs:
         allowUpdates: true
     
     
-    - name: Repository Dispatch
-      uses: peter-evans/repository-dispatch@v2
+    #- name: Repository Dispatch
+      #uses: peter-evans/repository-dispatch@v2
       #with:
       #  token: ${{ secrets.Homebrew }}
       #  event-type: formula_update

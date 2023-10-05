@@ -45,23 +45,7 @@ class PythonHandler {
     
     private var _isRunning: Bool = false
     var defaultRunning: Bool = false
-//	{
-//        get {
-//            _isRunning
-//        }
-//        set {
-//            if !_isRunning {
-//                _isRunning = newValue
-//                start(
-//                    stdlib: pystdlib.path,
-//                    app_packages: [pyextras.path],
-//                    debug: true
-//                )
-//            }
-//            
-//            
-//        }
-//    }
+
     
     init() {
         
@@ -76,26 +60,7 @@ class PythonHandler {
     func start(stdlib: String, app_packages: [String], debug: Bool) {
         var ret = 0
         
-        //    let python_home: String? = nil
-        //    let app_module_name: String? = nil
-        //var path: String = ""
-        //    let traceback_str: String? = nil
-        //var wtmp_str: UnsafePointer<Int32>? = nil
-        //    let app_module_str: UnsafePointer<Int8>? = nil
-        //    let nslog_script: UnsafePointer<Int8>? = nil
-        //    let app_module: PyObject? = nil
-        //    let module: PyObject? = nil
-        //    let module_attr: PyObject? = nil
-        //    let method_args: PyObject? = nil
-        //    let result: PyObject? = nil
-        //    let exc_type: PyObject? = nil
-        //    let exc_value: PyObject? = nil
-        //    let exc_traceback: PyObject? = nil
-        //    let systemExit_code: PyObject? = nil
-        
-//        let resourcePath = Bundle.main.resourcePath!
-        
-        // Generate an isolated Python configuration.
+      
         if debug { DEBUG_PRINT("Configuring isolated Python...") }
         PyPreConfig_InitIsolatedConfig(&preconfig)
         PyConfig_InitIsolatedConfig(&config)

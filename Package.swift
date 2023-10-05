@@ -5,12 +5,14 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftonizeExecutable",
-	platforms: [.macOS(.v11)],
+	platforms: [.macOS(.v13)],
 	dependencies: [
-		.package(url: "https://github.com/PythonSwiftLink/PythonLib", from: "0.1.0"),
-		.package(url: "https://github.com/PythonSwiftLink/PythonSwiftCore", branch: "testing"),
+
+		.package(url: "https://github.com/PythonSwiftLink/PythonSwiftLink", branch: "master"),
+		
 		//.package(path: "../Swiftonize"),
 		.package(url: "https://github.com/PythonSwiftLink/Swiftonize", branch: "testing"),
+		
 		.package(url: "https://github.com/kylef/PathKit", from: .init(1, 0, 0) ),
 		.package(url: "https://github.com/apple/swift-syntax", from: .init(508, 0, 0) ),
 		
@@ -26,7 +28,8 @@ let package = Package(
 				.product(name: "SwiftSyntax", package: "swift-syntax"),
 				.product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
 				.product(name: "ArgumentParser", package: "swift-argument-parser"),
-				"PythonSwiftCore",
+				.product(name: "PythonSwiftCore", package: "PythonSwiftLink"),
+				.product(name: "PySwiftObject", package: "PythonSwiftLink"),
 				"Swiftonize",
 				"PathKit"
 			]

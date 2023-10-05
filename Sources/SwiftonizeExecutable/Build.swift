@@ -117,7 +117,6 @@ func build_wrapper(src: Path, dst: Path, site: Path?, beeware: Bool = true) asyn
     let module_code = module.code.formatted().description
         .replacingOccurrences(of: "Unmanaged < ", with: "Unmanaged<")
         .replacingOccurrences(of: " > .fromOpaque", with: ">.fromOpaque")
-    
 //    return
     try dst.write(module_code)
     
@@ -129,19 +128,19 @@ func build_wrapper(src: Path, dst: Path, site: Path?, beeware: Bool = true) asyn
 		
 		
 		
-		return
-        guard let test_parse: PyPointer = pythonImport(from: "pure_py_parser", import_name: "testParse") else { throw PythonError.attribute }
-        do {
-            try (site + "\(filename).py").write(test_parse(code), encoding: .utf8)
-        }
-        
-        catch let err as PythonError {
-            print(err.localizedDescription)
-            err.triggerError("")
-        }
-        catch let other {
-            print(other.localizedDescription)
-        }
+//		return
+//        guard let test_parse: PyPointer = pythonImport(from: "pure_py_parser", import_name: "testParse") else { throw PythonError.attribute }
+//        do {
+//            try (site + "\(filename).py").write(test_parse(code), encoding: .utf8)
+//        }
+//        
+//        catch let err as PythonError {
+//            print(err.localizedDescription)
+//            err.triggerError("")
+//        }
+//        catch let other {
+//            print(other.localizedDescription)
+//        }
     }
 }
 

@@ -1,4 +1,4 @@
-// swift-tools-version: 5.7
+// swift-tools-version:5.8
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -8,8 +8,8 @@ let package = Package(
 	platforms: [.macOS(.v13)],
 	dependencies: [
 
-		.package(url: "https://github.com/PythonSwiftLink/PythonSwiftLink", branch: "master"),
-		
+		.package(url: "https://github.com/PythonSwiftLink/PythonSwiftLink", from: .init(0, 0, 0)),
+		//.package(path: "../PythonSwiftLink"),
 		//.package(path: "../Swiftonize"),
 		.package(url: "https://github.com/PythonSwiftLink/Swiftonize", branch: "testing"),
 		
@@ -29,9 +29,12 @@ let package = Package(
 				.product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
 				.product(name: "ArgumentParser", package: "swift-argument-parser"),
 				.product(name: "PythonSwiftCore", package: "PythonSwiftLink"),
-				.product(name: "PySwiftObject", package: "PythonSwiftLink"),
-				"Swiftonize",
+				.product(name: "Swiftonize", package: "Swiftonize"),
+				//.product(name: "PySwiftObject", package: "PythonSwiftLink"),
 				"PathKit"
+			],
+			swiftSettings: [
+				.define("JOE")
 			]
 		),
     ]

@@ -1,0 +1,4 @@
+swift package purge-cache
+swift package reset
+rm -rf .build
+swift build -c release --disable-sandbox --arch arm64 --arch x86_64

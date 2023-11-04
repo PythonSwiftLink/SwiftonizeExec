@@ -1,4 +1,4 @@
-name: Homebrew Builder
+name: Homebrew Builder old
 on:
   push:
    tags:
@@ -6,33 +6,44 @@ on:
   workflow_dispatch:
 
 jobs:
-  release-osx:
-    strategy:
-      matrix:
-        os: [macos-latest]
-        swift: ["5.8"]
+  build_source:
+    #strategy:
+      #matrix:
+      #  os: [macos-latest]
+      #  swift: ["5.8"]
     runs-on: macos-latest
+    outputs:
+      version: ${{ steps.get_version.outputs.version }}
+      sha: ${{ steps.shasum.outputs.sha }}  
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v4
-    - name: Build Release
-      run: |
-          swift build -c release --disable-sandbox --arch arm64 --arch x86_64
-          mkdir release
-          cp -rf .build/apple/Products/Release/SwiftonizeExecutable release/Swiftonize
-          cp -rf python_stdlib release/python_stdlib
-          cp -rf python-extra release/python-extra
-          tar -C ./release/ -czvf ./swiftonize.tar.gz ./
+    - uses: actions/checkout@v4  
+    - name: Build Release    
+      run: | 
+            swift build -c release --disable-sandbox --arch arm64 --arch x86_64
+            mkdir release
+            cp -rf .build/apple/Products/Release/SwiftonizeExecutable release/Swiftonize
+            cp -rf python_stdlib release/python_stdlib
+            cp -rf python-extra release/python-extra
+            tar -C ./release/ -czvf ./swiftonize.tar.gz ./
           
     - name: Get version
       id: get_version
-      run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
-    
+      #run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}
+      #run: echo "version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
+      run: echo "version=0.2" >> $GITHUB_OUTPUT
+      
     - name: Set SHA
       id: shasum
+      #run: echo ::set-output name=sha::"$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')"
+      #run: echo "sha=$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')">> $GITHUB_OUTPUT
+      run: echo "sha=abc"
+
+    - name: retrieve output
       run: |
-        echo ::set-output name=sha::"$(shasum -a 256 ./swiftonize.tar.gz | awk '{printf $1}')"
+        echo ${{ needs.build_source.outputs.version }}
+        echo ${{ needs.build_source.output.sha }}
     
     - uses: ncipollo/release-action@v1
       with:
@@ -40,11 +51,44 @@ jobs:
         token: ${{ secrets.Homebrew }}
         allowUpdates: true
     
-    
-    - name: Repository Dispatch
-      uses: peter-evans/repository-dispatch@v2
-      with:
-        token: ${{ secrets.Homebrew }}
-        event-type: formula_update
-        client-payload: '{"ref": "${{ steps.get_version.outputs.version }}", "sha": "${{ steps.shasum.outputs.sha }}"}'
+      
+  update_formula:
+    needs: build_source
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
+      - name: retrieve output
+        run: |
+          echo ${{ needs.build_source.outputs.version }}
+          echo ${{ needs.build_source.output.sha }}
+
+      
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' # install the python version needed
+
+      - name: install python packages
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install cookiecutter
+        
+      - name: generate cookie
+        run: python3.10 generate_formula.py ${{ needs.build_source.outputs.version }} ${{ needs.build_source.output.sha }}
+
+      - name: clone tools and update
+        run: |
+            git clone https://github.com/pythonswiftlink/homebrew-tools
+            cp -f homebrew_formula/* homebrew-tools/Formula/s/
+
+      - name: Pushes to another repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.Homebrew }}
+        with:
+          source-directory: 'homebrew-tools'
+          destination-github-username: 'pythonswiftlink'
+          destination-repository-name: 'homebrew-tools'
+          user-email: pythonswiftlink@gmail.com
+          target-branch: master

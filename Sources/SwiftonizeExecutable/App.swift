@@ -42,7 +42,7 @@ struct App: AsyncParsableCommand {
 					let real = try callp.symlinkDestination()
 					let root = real.parent()
 					return (
-						(root + "python_stdlib").string,
+						(root + "python-stdlib").string,
 						(root + "python-extra").string
 					)
 				}

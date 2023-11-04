@@ -1,13 +1,6 @@
-//
-//  main.swift
-//  PythonSwiftLink
-//
-//  Created by MusicMaker on 08/12/2022.
-//  Copyright © 2022 Example Corporation. All rights reserved.
-//
+
 
 import Foundation
-import PythonLib
 import PythonSwiftCore
 
 
